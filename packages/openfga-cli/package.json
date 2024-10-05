@@ -1,18 +1,24 @@
 {
-  "name": "@ram/openfga-type-generator",
-  "version": "0.0.0",
-  "main": "./dist/index.js",
+  "name": "@cliclack/openfga-type-generator",
+  "version": "1.0.0",
   "license": "MIT",
+  "author": "Marko Ramšak, Biserka Zinreich",
+  "repository": {
+    "url": "https: //github.com/marramsak/openfga-type-generator"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "type": "commonjs",
+  "bin": "dist/index.cjs",
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint --fix"
   },
-  "type": "commonjs",
-  "bin": "./dist/index.cjs",
   "dependencies": {
+    "@cliclack/config-eslint": "*",
     "@openfga/sdk": "0.7.0",
     "@openfga/syntax-transformer": "0.2.0-beta.21",
-    "@ram/config-eslint": "*",
     "commander": "12.1.0",
     "lodash": "4.17.21"
   },

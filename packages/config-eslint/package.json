@@ -1,12 +1,16 @@
 {
-  "name": "@ram/config-eslint",
-  "version": "0.0.0",
+  "name": "@cliclack/config-eslint",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Marko Ramšak, Biserka Zinreich",
+  "repository": {
+    "url": "https: //github.com/marramsak/openfga-type-generator"
+  },
   "exports": {
     "./base": "./base.js",
     "./nest": "./nest.js",
     "./next": "./next.js"
   },
-  "license": "MIT",
   "devDependencies": {
     "@eslint/compat": "1.0.1",
     "@next/eslint-plugin-next": "14.2.3",

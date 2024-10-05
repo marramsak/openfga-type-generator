@@ -1,2 +1,2 @@
-import base from "@ram/config-eslint/base";
+import base from "@cliclack/config-eslint/base";
 export default [...base];
