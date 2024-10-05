@@ -14,7 +14,7 @@
     "build": "turbo run build --parallel",
     "lint": "turbo run lint --parallel",
     "prepare": "husky && git config gitflow.path.hooks .husky",
-    "publish-packages": "turbo run build lint && changeset version && changeset publish --access public"
+    "publish": "turbo run build lint && changeset version && changeset publish --access public"
   },
   "devDependencies": {
     "@changesets/cli": "2.27.9",
