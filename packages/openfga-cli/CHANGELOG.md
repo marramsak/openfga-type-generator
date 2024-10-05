@@ -1,12 +1,12 @@
 # @cliclack/openfga-type-generator
 
-## 1.0.0
+## 1.1.0
 
-### Major Changes
+### Minor Changes
 
-- initial release
+- fixed dependencies
 
 ### Patch Changes
 
 - Updated dependencies
-  - @ram/config-eslint@1.0.0
+  - @cliclack/config-eslint@1.1.0
