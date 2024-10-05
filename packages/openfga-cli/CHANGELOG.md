@@ -1,5 +1,11 @@
 # @cliclack/openfga-type-generator
 
+## 1.4.0
+
+### Minor Changes
+
+- 4f3f5b2: remove changeset readme
+
 ## 1.3.0
 
 ### Minor Changes
