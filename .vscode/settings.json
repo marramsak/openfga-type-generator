@@ -51,5 +51,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.eol": "\n",
-  "explorer.excludeGitIgnore": false
+  "explorer.excludeGitIgnore": false,
+  "eslint.useFlatConfig": true
 }

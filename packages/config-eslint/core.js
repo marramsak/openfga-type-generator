@@ -42,7 +42,7 @@ module.exports = [
       ],
       "import/no-default-export": "off",
     },
-    ignores: ["node_modules/", "dist/"],
+    ignores: ["**/dist/*", "**/node_modules/*"],
     settings: {
       react: {
         version: "detect",
