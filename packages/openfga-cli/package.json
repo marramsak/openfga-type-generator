@@ -2,7 +2,7 @@
   "name": "@cliclack/openfga-type-generator",
   "version": "1.0.0",
   "license": "MIT",
-  "author": "Marko Ramšak, Biserka Zinreich",
+  "author": "Marko Ramšak, Biserka Zinreich, Matija Ramšak",
   "repository": {
     "url": "https: //github.com/marramsak/openfga-type-generator"
   },
