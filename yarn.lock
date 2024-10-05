@@ -299,7 +299,24 @@ __metadata:
     eslint-plugin-simple-import-sort: "npm:12.1.0"
     prettier: "npm:3.1.1"
   peerDependencies:
-    eslint: ">=7"
+    "@eslint/compat": ">=1"
+    "@next/eslint-plugin-next": ">=14"
+    "@typescript-eslint/eslint-plugin": ">=7"
+    "@typescript-eslint/parser": ">=7"
+    eslint: ">=9"
+    eslint-config-next: ">=14"
+    eslint-config-prettier: ">=9"
+    eslint-config-react: ">=1"
+    eslint-import-resolver-typescript: ">=3"
+    eslint-plugin-import: ">=2"
+    eslint-plugin-jsdoc: ">=48"
+    eslint-plugin-prettier: ">=5"
+    eslint-plugin-react: ">=7"
+    eslint-plugin-react-hooks: ">=4"
+    eslint-plugin-react-refresh: ">=0"
+    eslint-plugin-simple-import-sort: ">=12"
+    prettier: ">=3"
+    typescript: ">=5"
   languageName: unknown
   linkType: soft
 

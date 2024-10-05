@@ -1,3 +1,6 @@
 .turbo/
+.nx/
+/node_modules
+.yarn/install-state.gz
 node_modules
-dist
+.env.local

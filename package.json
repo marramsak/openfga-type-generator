@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": "Marko Ramšak, Biserka Zinreich, Matija Ramšak",
   "repository": {
-    "url": "https: //github.com/marramsak/openfga-type-generator"
+    "url": "https://github.com/marramsak/openfga-type-generator"
   },
   "packageManager": "yarn@4.2.2",
   "workspaces": [
@@ -14,7 +14,7 @@
     "build": "turbo run build --parallel",
     "lint": "turbo run lint --parallel",
     "prepare": "husky && git config gitflow.path.hooks .husky",
-    "publish": "turbo run build lint && changeset version && changeset publish --access public"
+    "release": "turbo run build lint && changeset publish --access public"
   },
   "devDependencies": {
     "@changesets/cli": "2.27.9",

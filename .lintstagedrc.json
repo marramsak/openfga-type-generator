@@ -1,3 +1,4 @@
 {
+  "*.yml": "echo 'Skipping yml files'",
   "*": ["prettier --ignore-unknown --write"]
 }

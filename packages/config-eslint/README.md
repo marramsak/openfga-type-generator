@@ -14,7 +14,7 @@ Ensure both are installed on your machine before proceeding.
 To install all the dependencies, run:
 
 ```bash
-npm install @cliclack/@cliclack/config-eslint @eslint/compat @next/eslint-plugin-next @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next eslint-config-prettier eslint-config-react eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-plugin-simple-import-sort prettier typescript --save-dev
+npm install @cliclack/config-eslint @eslint/compat @next/eslint-plugin-next @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-next eslint-config-prettier eslint-config-react eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-plugin-simple-import-sort prettier typescript --save-dev
 ```
 
 ## Configuration

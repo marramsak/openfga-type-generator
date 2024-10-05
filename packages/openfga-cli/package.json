@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": "Marko Ramšak, Biserka Zinreich, Matija Ramšak",
   "repository": {
-    "url": "https: //github.com/marramsak/openfga-type-generator"
+    "url": "https://github.com/marramsak/openfga-type-generator"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

@@ -1,3 +1,4 @@
+dist
 .turbo/
 .nx/
 /node_modules
