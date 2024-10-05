@@ -1,14 +1,16 @@
 import { Command } from "commander";
-import { generateTypes, parseAuthModel } from "./Generators";
-import { convertToAuthModel, readFile, saveFile, validateDSL } from "./Utils";
+import { generateTypes, parseAuthModel } from "./generators";
+import { convertToAuthModel, readFile, saveFile, validateDSL } from "./utils";
 
 const program = new Command();
 
-program.name("openfga-cli").description("Tool to generate .fga typesafe definitions from dsl").version("1.0.0");
+program
+  .name("openfga-type-generator")
+  .description("Tool to generate .fga typesafe definitions from dsl")
+  .version("1.0.0");
 
 program
-  .command("build")
-  .description("Split a string into substrings and display as an array")
+  .command("generate")
   .requiredOption("-s, --src <string>", "input path to .fga file", "./src/model.fga")
   .requiredOption("-d, --dist <string>", "output path for generated sdk", "./dist")
   .requiredOption("-n, --name <string>", "output path for generated sdk", "authModel")

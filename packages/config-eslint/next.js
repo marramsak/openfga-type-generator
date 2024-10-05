@@ -28,7 +28,7 @@ module.exports = [
       "react/prop-types": "off",
       "react/react-in-jsx-scope": "off",
     },
-    ignores: ["**/dist/*", "**/node_modules/*"],
+    ignores: ["node_modules/", "dist/"],
     settings: {
       react: {
         version: "detect",

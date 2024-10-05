@@ -1,0 +1,21 @@
+{
+  "name": "@cliclack/example",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Marko Ramšak, Biserka Zinreich, Matija Ramšak",
+  "private": true,
+  "repository": {
+    "url": "https: //github.com/marramsak/openfga-type-generator"
+  },
+  "scripts": {
+    "generate": "openfga-type-generator generate -s ./src/auth-model.fga -d ./dist -n AuthModel",
+    "lint": "eslint --fix"
+  },
+  "devDependencies": {
+    "@cliclack/config-eslint": "*",
+    "@cliclack/openfga-type-generator": "*"
+  },
+  "engines": {
+    "node": ">=19.0.0"
+  }
+}
