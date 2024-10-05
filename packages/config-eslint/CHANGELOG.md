@@ -1,5 +1,11 @@
 # @cliclack/config-eslint
 
+## 1.5.0
+
+### Minor Changes
+
+- 4f3f5b2: remove changeset readme
+
 ## 1.4.0
 
 ### Minor Changes
