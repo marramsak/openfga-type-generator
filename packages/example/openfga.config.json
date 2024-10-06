@@ -1,0 +1,12 @@
+{
+  "name": "AuthModelGenerated",
+  "dist": "./dist",
+  "src": "./src/auth-model.fga",
+  "generate": {
+    "touples": true,
+    "assertions": true,
+    "metadata": true,
+    "authmodel": true
+  },
+  "minify": false
+}
