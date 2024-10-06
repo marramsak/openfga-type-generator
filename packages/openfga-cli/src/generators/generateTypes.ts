@@ -1,7 +1,8 @@
-import { RelationReference } from "@openfga/sdk";
+import { AuthorizationModel, RelationReference } from "@openfga/sdk";
 import {
   factory,
   LiteralTypeNode,
+  NodeFlags,
   PropertySignature,
   SyntaxKind,
   TemplateLiteralTypeNode,
@@ -18,7 +19,7 @@ import { ParsedAuthModel } from ".";
  * @param skipNonDrt - Flag to skip non-DRT (Direct Relation Type) entries.
  * @returns An object containing the generated type as text and its AST node.
  */
-export function generateTypes(parsedAuthModel: ParsedAuthModel, name: string, skipNonDrt = true) {
+export function generateAuthModelTypes(parsedAuthModel: ParsedAuthModel, name: string, skipNonDrt = true) {
   // Map over the parsed authorization model to generate types for each entry.
   const types = parsedAuthModel
     .map(({ type, relations }) => {
@@ -98,8 +99,32 @@ export function generateTypes(parsedAuthModel: ParsedAuthModel, name: string, sk
     factory.createUnionTypeNode(types),
   );
 
-  return {
-    value: convertToText(type),
-    code: type,
-  };
+  return convertToText(type);
+}
+
+/**
+ * Generates a constant variable declaration based on the parsed authorization model.
+ *
+ * @param authModel - The authorization model.
+ * @param name - The name of the generated constant variable.
+ * @returns An object containing the generated constant as text and its AST node.
+ */
+export function generateAuthModelConst(authModel: Omit<AuthorizationModel, "id">, name: string) {
+  // Create a variable statement with the export keyword.
+  const type = factory.createVariableStatement(
+    [factory.createModifier(SyntaxKind.ExportKeyword)], // Export the variable
+    factory.createVariableDeclarationList(
+      [
+        factory.createVariableDeclaration(
+          factory.createIdentifier(name), // Variable name
+          undefined,
+          undefined,
+          factory.createIdentifier(JSON.stringify(authModel, undefined, 2)), // Variable value as a JSON string
+        ),
+      ],
+      NodeFlags.Const, // Declare the variable as a constant
+    ),
+  );
+
+  return convertToText(type);
 }

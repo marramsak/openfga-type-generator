@@ -1,6 +1,6 @@
 import { Command } from "commander";
-import { generateTypes, parseAuthModel } from "./generators";
-import { convertToAuthModel, readConfig, readFile, saveFile, validateDSL } from "./utils";
+import { generateAuthModelConst, generateAuthModelTypes, parseAuthModel } from "./generators";
+import { readConfig, readFile, saveFile, transformDSLToAuthModel, validateDSLString } from "./utils";
 
 const program = new Command();
 
@@ -29,31 +29,32 @@ async function generate(args: { src: string; dist: string; name: string; config:
 
   const path = (ext: string) => `${dist}/${name}.${ext}`;
   const dsl = await readFile(src);
-  validateDSL(dsl);
+  validateDSLString(dsl);
 
-  const authModel = convertToAuthModel(dsl, `${name}AuthModel`);
+  const authModel = transformDSLToAuthModel(dsl);
+  const parsedAuthModel = parseAuthModel(authModel);
 
-  const parsedAuthModel = parseAuthModel(authModel.object);
-  const tupleCode = generateTypes(parsedAuthModel.object, `${name}Touple`, true);
-  const assertionCode = generateTypes(parsedAuthModel.object, `${name}Assertion`, false);
+  const tupleTypesCode = generateAuthModelTypes(parsedAuthModel, `${name}Tuple`, true);
+  const assertionTypesCode = generateAuthModelTypes(parsedAuthModel, `${name}Assertion`, false);
+  const authModelConstCode = generateAuthModelConst(authModel, `${name}AuthModel`);
 
   if (config?.generate) {
-    const { metadata, touples, assertions, authmodel } = config.generate;
+    const { metadata, tuples, assertions, authmodel } = config.generate;
 
     if (metadata) {
-      saveFile(path("json"), JSON.stringify(authModel.object, undefined, minify ? 0 : 2), minify);
-      saveFile(path("type.meta.json"), JSON.stringify(parsedAuthModel.json, undefined, minify ? 0 : 2), minify);
+      saveFile(path("json"), JSON.stringify(authModel, undefined, minify ? 0 : 2), minify);
+      saveFile(path("type.meta.json"), JSON.stringify(parsedAuthModel, undefined, minify ? 0 : 2), minify);
     }
 
-    if (touples || assertions || authmodel) {
-      const combinedCode = [touples && tupleCode.value, assertions && assertionCode.value, authmodel && authModel.value]
+    if (tuples || assertions || authmodel) {
+      const combinedCode = [tuples && tupleTypesCode, assertions && assertionTypesCode, authmodel && authModelConstCode]
         .filter(Boolean)
         .join("\n");
       saveFile(path("ts"), combinedCode, minify);
     }
   } else {
-    saveFile(path("json"), JSON.stringify(authModel.object, undefined, minify ? 0 : 2), minify);
-    saveFile(path("type.meta.json"), JSON.stringify(parsedAuthModel.json, undefined, minify ? 0 : 2), minify);
-    saveFile(path("ts"), `${tupleCode.value} \n ${assertionCode.value} \n ${authModel.value}`, minify);
+    saveFile(path("json"), JSON.stringify(authModel, undefined, minify ? 0 : 2), minify);
+    saveFile(path("type.meta.json"), JSON.stringify(parsedAuthModel, undefined, minify ? 0 : 2), minify);
+    saveFile(path("ts"), `${tupleTypesCode} \n ${assertionTypesCode} \n ${authModelConstCode}`, minify);
   }
 }

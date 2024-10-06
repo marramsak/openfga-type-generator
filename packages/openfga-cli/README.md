@@ -39,9 +39,10 @@ The generation command is defined in the package.json file:
 
 ```bash
 ├── src
-│   └── model.fga      # The source FGA model
-├── dist               # The directory where the generated types will be stored
-└── package.json       # Project configuration and scripts
+│   └── model.fga         # The source FGA model
+├── dist                  # The directory where the generated types will be stored
+└── package.json          # Project configuration and scripts
+└── openfga.config.json   # Configuration file (optional)
 
 ```
 
@@ -75,7 +76,7 @@ type team
 type user
 ```
 
-## Config
+## Using configuration file (optional)
 
 Alternatively, you can use the `openfga.config.json` file in the root directory instead of command-line arguments.
 
@@ -85,7 +86,7 @@ Alternatively, you can use the `openfga.config.json` file in the root directory 
   "dist": "./dist",
   "src": "./src/model.fga",
   "generate": {
-    "touples": true,
+    "tuples": true,
     "assertions": true,
     "metadata": true,
     "authmodel": true
