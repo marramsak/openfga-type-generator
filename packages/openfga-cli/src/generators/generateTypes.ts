@@ -1,30 +1,28 @@
 import { RelationReference } from "@openfga/sdk";
 import {
-  createPrinter,
-  createSourceFile,
-  EmitHint,
   factory,
   LiteralTypeNode,
   PropertySignature,
-  ScriptKind,
-  ScriptTarget,
   SyntaxKind,
   TemplateLiteralTypeNode,
-  TypeAliasDeclaration,
   TypeLiteralNode,
 } from "typescript";
+import { convertToText } from "../utils";
 import { ParsedAuthModel } from ".";
 
-function convertToText(typeDeclaration: TypeAliasDeclaration) {
-  const sourceFile = createSourceFile("", "", ScriptTarget.Latest, false, ScriptKind.TS);
-
-  const printer = createPrinter();
-  return printer.printNode(EmitHint.Unspecified, typeDeclaration, sourceFile);
-}
-
+/**
+ * Generates TypeScript types based on the parsed authorization model.
+ *
+ * @param parsedAuthModel - The parsed authorization model.
+ * @param name - The name of the generated type alias.
+ * @param skipNonDrt - Flag to skip non-DRT (Direct Relation Type) entries.
+ * @returns An object containing the generated type as text and its AST node.
+ */
 export function generateTypes(parsedAuthModel: ParsedAuthModel, name: string, skipNonDrt = true) {
+  // Map over the parsed authorization model to generate types for each entry.
   const types = parsedAuthModel
     .map(({ type, relations }) => {
+      // Create a template literal type for the object type.
       const objectType = factory.createTemplateLiteralType(factory.createTemplateHead(type + ":"), [
         factory.createTemplateLiteralTypeSpan(
           factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
@@ -32,13 +30,17 @@ export function generateTypes(parsedAuthModel: ParsedAuthModel, name: string, sk
         ),
       ]);
 
+      // Filter and map over the relations to generate relation types.
       const filteredRelationTypes = relations
         .map(({ associatedTypes, relationName }) => {
+          // Map over associated types to generate user types.
           const filteredUserType = associatedTypes
             .map(({ type, relation, wildcard, drt }: RelationReference & { drt?: boolean }) => {
               if (skipNonDrt && !drt) {
                 return undefined;
               }
+
+              // Create default type for the user.
               const defaultType = factory.createTemplateLiteralType(factory.createTemplateHead(type + ":"), [
                 factory.createTemplateLiteralTypeSpan(
                   factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
@@ -46,10 +48,12 @@ export function generateTypes(parsedAuthModel: ParsedAuthModel, name: string, sk
                 ),
               ]);
 
+              // Create wildcard type if applicable.
               const wildcardType = wildcard
                 ? factory.createLiteralTypeNode(factory.createStringLiteral(type + ":*"))
                 : undefined;
 
+              // Create relation type if applicable.
               const relationType = relation
                 ? factory.createTemplateLiteralType(factory.createTemplateHead(type), [
                     factory.createTemplateLiteralTypeSpan(
@@ -59,16 +63,20 @@ export function generateTypes(parsedAuthModel: ParsedAuthModel, name: string, sk
                   ])
                 : undefined;
 
+              // Return the appropriate type, prioritizing wildcard, then relation, then default.
               return wildcardType ?? relationType ?? defaultType;
             })
             .filter((userType) => userType !== undefined) as (LiteralTypeNode | TemplateLiteralTypeNode)[];
 
           if (filteredUserType.length < 1) return undefined;
 
+          // Create a union type for the user types.
           const userType = factory.createUnionTypeNode(filteredUserType);
 
+          // Create a literal type for the relation name.
           const relationType = factory.createLiteralTypeNode(factory.createStringLiteral(relationName));
 
+          // Create a type literal node for the relation type.
           return factory.createTypeLiteralNode(
             [
               factory.createPropertySignature(undefined, factory.createIdentifier("user"), undefined, userType),
@@ -92,6 +100,6 @@ export function generateTypes(parsedAuthModel: ParsedAuthModel, name: string, sk
 
   return {
     value: convertToText(type),
-    Object: type,
+    code: type,
   };
 }
