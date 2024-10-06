@@ -1,5 +1,11 @@
 # @cliclack/openfga-type-generator
 
+## 1.6.0
+
+### Minor Changes
+
+- f351c35: fixed config file flow
+
 ## 1.5.0
 
 ### Minor Changes
