@@ -6,7 +6,7 @@ export interface Config {
   dist: string; // Distribution directory
   name: string; // Name prefix for the file and types
   generate: {
-    touples: boolean; // Flag to generate tuples
+    tuples: boolean; // Flag to generate tuples
     assertions: boolean; // Flag to generate assertions
     metadata: boolean; // Flag to generate metadata
     authmodel: boolean; // Flag to generate authentication model
