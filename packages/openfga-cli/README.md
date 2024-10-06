@@ -24,14 +24,16 @@ The generation command is defined in the package.json file:
 ```json
 {
   "scripts": {
-    "generate": "openfga-type-generator generate -s ./src/model.fga -d ./dist -n"
+    "generate": "openfga-type-generator generate -s ./src/model.fga -d ./dist -n AuthModel",
+    "generate-config": "openfga-type-generator generate"
   }
 }
 ```
 
-- -s flag points to the source FGA model file (./src/model.fga).
-- -d flag points to the destination directory (./dist).
-- -n is used to to name types.
+- -s flag points to the source FGA model file `./src/model.fga`.
+- -d flag points to the destination directory `./dist`.
+- -n is used as a prefix to to name files and types.
+- -m is used to minify generated source code.
 
 ## Directory structure
 
@@ -43,7 +45,7 @@ The generation command is defined in the package.json file:
 
 ```
 
-Example references of a model file named model.fga
+Example reference of a model file named `model.fga`
 
 ```yaml
 model
@@ -73,16 +75,38 @@ type team
 type user
 ```
 
+## Config
+
+Alternatively, you can use the `openfga.config.json` file in the root directory instead of command-line arguments.
+
+```json
+{
+  "name": "AuthModel",
+  "dist": "./dist",
+  "src": "./src/model.fga",
+  "generate": {
+    "touples": true,
+    "assertions": true,
+    "metadata": true,
+    "authmodel": true
+  },
+  "minify": true
+}
+```
+
 ## Usage
 
 Generating Types from FGA Model
-To generate TypeScript types from the FGA model located at ./src/model.fga, use the following command:
+To generate TypeScript types from the FGA model located at `./src/model.fga`, use the following command:
 
 ```bash
+#run with command args
 npm run generate
+#run with config
+npm run generate-config
 ```
 
-This will generate the types in the ./dist directory.
+This will generate the types in the `./dist` directory.
 
 ## License
 

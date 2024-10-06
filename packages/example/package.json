@@ -8,7 +8,8 @@
     "url": "https://github.com/marramsak/openfga-type-generator"
   },
   "scripts": {
-    "generate": "openfga-type-generator generate -s ./src/auth-model.fga -d ./dist -n AuthModel",
+    "generate": "openfga-type-generator generate -s ./src/auth-model.fga -d ./dist -n AuthModel -m",
+    "generate-config": "openfga-type-generator generate",
     "lint": "eslint --fix"
   },
   "devDependencies": {
