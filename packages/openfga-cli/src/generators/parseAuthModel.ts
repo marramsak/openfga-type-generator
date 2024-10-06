@@ -186,8 +186,5 @@ export function parseAuthModel(authModel?: Omit<AuthorizationModel, "id">) {
     return { type: typeDefinition.type, relations };
   });
 
-  return {
-    object: assertions,
-    json: JSON.stringify(assertions),
-  };
+  return assertions;
 }
