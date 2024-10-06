@@ -1,5 +1,11 @@
 # @cliclack/openfga-type-generator
 
+## 1.5.0
+
+### Minor Changes
+
+- d53ebcd: added config file support and auth model const variable generation
+
 ## 1.4.0
 
 ### Minor Changes
