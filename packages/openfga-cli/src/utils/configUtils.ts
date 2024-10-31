@@ -23,6 +23,7 @@ export async function readConfig(src: string): Promise<Config | undefined> {
     const config: Config = JSON.parse(configFile);
     return config;
   } catch (e) {
+    console.error(e);
     // Return undefined if there is an error (e.g., file not found or JSON parsing error)
     return undefined;
   }

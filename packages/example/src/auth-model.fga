@@ -20,6 +20,11 @@ type repo
 
 type team
   relations
-    define member: [user, team#member]
+    define member: [user, team#member, user with non_expired_grant]
 
 type user
+
+
+condition non_expired_grant(current_time: timestamp, grant_time: timestamp, grant_duration: duration) {
+  current_time < grant_time + grant_duration
+}

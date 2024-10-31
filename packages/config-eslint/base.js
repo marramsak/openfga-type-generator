@@ -28,15 +28,7 @@ module.exports = [
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       "@typescript-eslint/explicit-module-boundary-types": "off",
-      "@typescript-eslint/ban-types": [
-        "error",
-        {
-          types: {
-            "{}": false,
-          },
-          extendDefaults: true,
-        },
-      ],
+      "@typescript-eslint/no-empty-object-type": "error",
       "import/no-default-export": "off",
     },
     ignores: ["node_modules/", "dist/"],
