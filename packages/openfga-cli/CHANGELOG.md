@@ -1,5 +1,11 @@
 # @cliclack/openfga-type-generator
 
+## 1.7.0
+
+### Minor Changes
+
+- 8328e04: fix eslint issues and upgrade packages
+
 ## 1.6.0
 
 ### Minor Changes
