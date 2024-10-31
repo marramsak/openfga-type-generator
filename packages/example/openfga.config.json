@@ -3,10 +3,10 @@
   "dist": "./dist",
   "src": "./src/auth-model.fga",
   "generate": {
-    "touples": true,
+    "tuples": true,
     "assertions": true,
     "metadata": true,
     "authmodel": true
   },
-  "minify": false
+  "minify": true
 }
