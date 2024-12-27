@@ -1,5 +1,11 @@
 # @cliclack/openfga-type-generator
 
+## 2.0.0
+
+### Major Changes
+
+- 6b242ae: Fixed relationship tuple code generation
+
 ## 1.7.0
 
 ### Minor Changes
