@@ -56,10 +56,10 @@ export function generateAuthModelTypes(parsedAuthModel: ParsedAuthModel, name: s
 
               // Create relation type if applicable.
               const relationType = relation
-                ? factory.createTemplateLiteralType(factory.createTemplateHead(type), [
+                ? factory.createTemplateLiteralType(factory.createTemplateHead(type + ":"), [
                     factory.createTemplateLiteralTypeSpan(
                       factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
-                      factory.createTemplateTail(":#" + relation),
+                      factory.createTemplateTail("#" + relation),
                     ),
                   ])
                 : undefined;
