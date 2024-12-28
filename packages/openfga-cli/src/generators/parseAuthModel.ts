@@ -151,7 +151,8 @@ function mergeArrayByField(references: RelationReference[], field: keyof Relatio
   for (const reference of references) {
     const key = reference[field];
     if (!key) continue;
-
+    if (reference.wildcard) continue;
+    
     if (result.has(key)) {
       const merged = { ...result.get(key), ...reference };
       result.set(key, merged);
@@ -160,7 +161,21 @@ function mergeArrayByField(references: RelationReference[], field: keyof Relatio
     }
   }
 
-  return [...result.values()];
+  const wildcardResult = new Map<string | object, RelationReference>();
+  for (const reference of references) {
+    const key = reference[field];
+    if (!key) continue;
+    if (!reference.wildcard) continue;
+    
+    if (wildcardResult.has(key)) {
+      const merged = { ...wildcardResult.get(key), ...reference };
+      wildcardResult.set(key, merged);
+    } else {
+      wildcardResult.set(key, reference);
+    }
+  }
+
+  return [...result.values(), ...wildcardResult.values()];
 }
 
 // Generate assertions from the authorization model
